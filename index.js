@@ -9,5 +9,8 @@ app.get('/api/hello', (req, res) => {
   res.send('你好世界!')
 })
 
+// 静态文件
+app.use(express.static('public'))
+
 
 module.exports = app
