@@ -1,0 +1,39 @@
+# Node.js
+node_modules
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+*.env
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# WebStorm
+.idea/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build files
+dist/
+build/
+out/
+*.min.js
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# misc
+*.tmp
+*.bak
+*.swp

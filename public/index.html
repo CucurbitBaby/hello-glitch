@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Express Demo</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <p>Click the button below to call the API:</p>
+    <button onclick="callApi()">Call API</button>
+    <script>
+      function callApi() {
+        fetch("/api/hello")
+          .then((res) => res.text())
+          .then((data) => {
+            console.log(data);
+            alert(data);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,11 +1,15 @@
-const http = require('http');
+const express = require('express')
+const app = express()
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write('Hello World!');
-  res.end();
-});
+// 接口
+app.get('/api/hello', (req, res) => {
+  res.send('Hello World!')
+})
 
-server.listen(process.env.PORT || 3000, () => {
-  console.log('demo-01 Server listening on port %d', server.address().port);
-});
+// 静态文件
+app.use(express.static('public'))
+
+// 启动服务器
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server listening on port ${process.env.PORT || 3000}`)
+})
