@@ -12,7 +12,7 @@ app.get('/api/hello', (req, res) => {
 })
 
 // 静态文件
-app.use('/static', express.static('public'))
+// app.use('/static', express.static('public'))
 
 
 module.exports = app
