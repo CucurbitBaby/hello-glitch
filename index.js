@@ -12,7 +12,15 @@ app.get('/api/hello', (req, res) => {
 })
 
 // 静态文件
-app.use('/static', express.static('public'))
+// app.use('/static', express.static('public'))
+
 
 
 module.exports = app
+
+
+// 启动服务器
+// app.listen(process.env.PORT || 3000, () => {
+//   console.log(`Server listening on port ${process.env.PORT || 3000}`)
+// })
+
