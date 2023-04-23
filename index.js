@@ -10,6 +10,6 @@ app.get('/api/hello', (req, res) => {
 app.use(express.static('public'))
 
 // 启动服务器
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`Server listening on port ${process.env.PORT || 3001}`)
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server listening on port ${process.env.PORT || 3000}`)
 })
