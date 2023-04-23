@@ -1,0 +1,6 @@
+{
+    "build": {
+      "src": "app.js",
+      "command": "node app.js"
+    }
+  }
