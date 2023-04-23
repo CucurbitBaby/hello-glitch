@@ -10,7 +10,10 @@
     <script>
       function callApi() {
         fetch("/api/hello")
-          .then((res) => res.text())
+          .then((res) => {
+            console.log(res)
+            return res.text()
+          })
           .then((data) => {
             console.log(data);
             alert(data);
