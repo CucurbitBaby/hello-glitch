@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User List</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+        color: #212529;
+      }
+      th,
+      td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+      }
+      thead {
+        background-color: #007bff;
+        color: #fff;
+      }
+      th {
+        border-bottom-width: 2px;
+        text-align: inherit;
+      }
+      tbody tr:nth-child(odd) {
+        background-color: #f8f9fa;
+      }
+      tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>User List</h1>
+    <table id="table">
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+
+    <script src="/library/knockout/knockout-latest.js"></script>
+    <script>
+      const tableHead = [
+        {
+          key: 'id',
+          label: 'ID'
+        },
+        {
+          key: 'cn_name',
+          label: '中文名'
+        },
+        {
+          key: 'en_name',
+          label: '英文名'
+        },
+        {
+          key: 'age',
+          label: '年龄'
+        },
+        {
+          key: 'birthday',
+          label: '生日'
+        },
+        {
+          key: 'city',
+          label: '成熟'
+        },
+        {
+          key: 'create_time',
+          label: '创建时间'
+        },
+        {
+          key: 'job',
+          label: '岗位'
+        }
+      ]
+      async function getUserList() {
+        return new Promise((resolve) => {
+          fetch('/api/user')
+            .then((res) => {
+              //   console.log(res)
+              return res.text()
+            })
+            .then((data) => {
+              //   console.log(JSON.parse(data))
+              resolve(JSON.parse(data))
+            })
+        })
+      }
+      async function initApp() {
+        const { data } = await getUserList()
+        randerUserList(data, tableHead)
+      }
+
+      function randerUserList(data, tableHead) {
+        // 表格头
+        var thead = document.querySelector('#table thead')
+        var headRow = document.createElement('tr')
+        tableHead.forEach((element) => {
+          const call = document.createElement('td')
+          call.textContent = element.label
+          headRow.appendChild(call)
+        })
+        thead.appendChild(headRow)
+
+        // 表格体
+        var tbody = document.querySelector('#table tbody')
+        for (var i = 0; i < data.length; i++) {
+          var row = document.createElement('tr')
+          tableHead.forEach((element) => {
+            const call = document.createElement('td')
+            call.textContent = data[i][element.key]
+            row.appendChild(call)
+          })
+          tbody.appendChild(row)
+        }
+      }
+
+      window.onload = initApp()
+    </script>
+  </body>
+</html>
