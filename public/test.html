@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My App</title>
+
+    <link rel="stylesheet" href="/library/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/library/bootstrap/docs.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/gh/needim/noty@77268c46/lib/noty.css" />
+
+    <style>
+    .add-data-table-form .add-data-table-form__body {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    }
+    .modal-xl .modal-dialog {
+    max-width: 50%;
+    }
+    </style>
+  
+  </head>
+  <body>
+    <table class="table table-bordered table-hover">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th scope="col">数据表名称</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: tableNames">
+        <tr>
+          <td data-bind="text: name"></td>
+          <td class="fixed-right-buttons">
+            <button type="button" class="btn btn-sm btn-bd-primary2" data-bind="click: $root.editPerson">
+              <i class="bi bi-pencil"></i> 编辑
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" data-bind="click: $root.removePerson">
+              <i class="bi bi-trash"></i> 删除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" data-bind="click: addPerson">
+      新增数据表
+    </button>
+
+    <div class="modal fade modal-xl" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- 模态框头部 -->
+          <div class="modal-header">
+            <h4 class="modal-title">新增数据表 - 数据表配置</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+
+          <!-- 模态框主体 -->
+          <div class="modal-body">
+            <div data-bind="visible: showModal">
+              <form data-bind="submit: saveForm" class="add-data-table-form">
+
+                <div class="add-data-table-form__body">
+                  <div class="form-group row">
+                    <label for="table_name" class="col-sm-1 col-form-label">表格名称:</label>
+                    <div class="col-sm-11">
+                      <input type="text" class="form-control" id="table_name" data-bind="value: addForm.table_name, valueUpdate: 'input'" placeholder="请规范填写英文变量名称，示例: persons">
+                    </div>
+                  </div>
+                
+                  <div data-bind="foreach: addForm.fields_list" style="margin: 20px 0 20px 40px;">
+                    <div class="form-group row">
+                      <div class="col-sm-6" style="display: flex; margin: 10px 0;">
+                        <label for="field_name" class="col-form-label col-sm-2">字段名称:</label>
+                        <input type="text" class="form-control" id="field_name" data-bind="value: fields_name, valueUpdate: 'input'" placeholder="请规范填写英文变量名称，示例: name">
+                      </div>
+                      <div class="col-sm-6" style="display: flex; margin: 10px 0;">
+                        <label for="field_type" class="col-form-label col-sm-2">字段类型:</label>
+                        <input type="text" class="form-control" id="field_type" data-bind="value: fields_type, valueUpdate: 'input'" readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="button" class="btn btn-primary" onclick="fillAddform()">填充数据</button>
+                
+                <button class="btn btn-primary" data-bind="click: addField">添加字段</button>
+              
+                <button type="submit" class="btn btn-success">Save</button>
+              
+              </form>
+              
+              
+            </div>
+          </div>
+
+          <!-- 模态框底部 -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              关闭
+            </button>
+            <button type="button" class="btn btn-primary" data-bind="click: savePerson">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <button type="button" class="btn btn-primary" onclick="showToast()">显示消息提示</button>
+
+    <script src="/library/jquery/jquery.min.js"></script>
+    <script src="/library/bootstrap/bootstrap.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/knockout@3.4.2/build/output/knockout-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/knockout-mapping@2.6.0/dist/knockout.mapping.min.js"></script>
+  
+    <!-- 消息提示 开始-->
+    <script src="https://cdn.jsdelivr.net/gh/needim/noty@77268c46/lib/noty.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <script src="/js/utils/noty/index.js"></script>
+    <!-- 消息提示 结束-->
+
+    <script src="/js/table/index.js"></script>
+  </body>
+</html>

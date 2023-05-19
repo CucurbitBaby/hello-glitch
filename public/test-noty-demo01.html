@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/needim/noty@77268c46/lib/noty.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/gh/needim/noty@77268c46/lib/noty.min.js"></script>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <button type="button" class="btn btn-primary" onclick="showToast2()">
+      显示消息提示
+    </button>
+    <script>
+      function showToast2() {
+        console.log(Noty)
+        new Noty({
+          type: 'success', // 消息类型，可以是 success、error、warning、info
+          text: '这是一条成功消息， 这是一条成功消息', // 消息内容
+          // timeout: 3000, // 持续时间，单位为毫秒
+          theme: 'nest', // 主题样式，可以是默认主题或其他主题
+          closeWith: ['button'], // 关闭方式，这里设置为点击关闭按钮关闭
+          progressBar: true, // 是否显示进度条
+          // animation: {
+          //   open: 'animated fadeIn', // 打开时的动画效果
+          //   close: 'animated fadeOut' // 关闭时的动画效果
+          // },
+          animation: {
+            open: 'animated bounceInRight', // Animate.css class names
+            close: 'animated bounceOutRight' // Animate.css class names
+          }
+        }).show()
+      }
+    </script>
+  </body>
+</html>
